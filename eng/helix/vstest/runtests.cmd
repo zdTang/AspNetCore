@@ -5,9 +5,10 @@ set target=%1
 set sdkVersion=%2
 set runtimeVersion=%3
 set helixQueue=%4
+set arch=%5
 
 set DOTNET_HOME=%HELIX_CORRELATION_PAYLOAD%\sdk
-set DOTNET_ROOT=%DOTNET_HOME%\x64
+set DOTNET_ROOT=%DOTNET_HOME%\%arch%
 set DOTNET_SKIP_FIRST_TIME_EXPERIENCE=1
 set DOTNET_MULTILEVEL_LOOKUP=0
 set DOTNET_CLI_HOME=%HELIX_CORRELATION_PAYLOAD%\home
