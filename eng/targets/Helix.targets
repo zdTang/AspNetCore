@@ -34,7 +34,7 @@
       <!-- Unconditionally include queues defined by project  -->
       <_HelixProjectTargetQueue Include="%(HelixProjectTargetQueue.Identity)" />
 
-      <_HelixApplicableTargetQueue Include="%(_HelixProjectTargetQueue.Identity)" Condition="'%(Identity)' == '$(HelixTargetQueue)' AND '%(Arch)' == '$(TargetArchitecture)'" />
+      <_HelixApplicableTargetQueue Include="%(_HelixProjectTargetQueue.Identity)" Condition="'%(Identity)' == '$(HelixTargetQueue)' AND '%(_HelixProjectTargetQueue.Arch)' == '$(TargetArchitecture)'" />
     </ItemGroup>
 
     <PropertyGroup>
