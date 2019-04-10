@@ -66,24 +66,27 @@ namespace Microsoft.AspNetCore.TestHost
             _testContext = _application.CreateContext(_httpContext.Features);
 
             // Async offload, don't let the test code block the caller.
-            _ = Task.Factory.StartNew(async () =>
+            using (ExecutionContext.SuppressFlow())
             {
-                try
+                _ = Task.Factory.StartNew(async () =>
                 {
-                    await _application.ProcessRequestAsync(_testContext);
-                    await CompleteResponseAsync();
-                    _application.DisposeContext(_testContext, exception: null);
-                }
-                catch (Exception ex)
-                {
-                    Abort(ex);
-                    _application.DisposeContext(_testContext, ex);
-                }
-                finally
-                {
-                    registration.Dispose();
-                }
-            });
+                    try
+                    {
+                        await _application.ProcessRequestAsync(_testContext);
+                        await CompleteResponseAsync();
+                        _application.DisposeContext(_testContext, exception: null);
+                    }
+                    catch (Exception ex)
+                    {
+                        Abort(ex);
+                        _application.DisposeContext(_testContext, ex);
+                    }
+                    finally
+                    {
+                        registration.Dispose();
+                    }
+                });
+            }
 
             return _responseTcs.Task;
         }
