@@ -2077,7 +2077,6 @@ namespace Microsoft.AspNetCore.Http.Connections.Tests
         }
 
         [Fact]
-        [Flaky("https://github.com/aspnet/AspNetCore-Internal/issues/1975", FlakyOn.All)]
         public async Task ErrorDuringPollWillCloseConnection()
         {
             bool ExpectedErrors(WriteContext writeContext)
