@@ -72,5 +72,9 @@ namespace Microsoft.AspNetCore.Mvc.Analyzers
         public const string ConfigureServicesMethod = "ConfigureServices";
 
         public const string ConfigureMethod = "Configure";
+
+        public const string CreateTagHelperMethod = "CreateTagHelper";
+
+        public const string TaskTypeName = "System.Threading.Tasks.Task";
     }
 }
